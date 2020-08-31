@@ -1,0 +1,91 @@
+Part 1
+What is the value of the keyword this in the following example:
+var data = this;
+console.log(data);
+ Solution 
+Window 
+
+
+What does this function output? Why?
+function logThis(){
+    return this;
+}
+
+logThis(); // ?
+Solution
+Output: Window, and why because the logThis function  doesn’t have  any call-site i.e there is no any implicit binding in a block scope
+
+
+
+What does this function output? Why?
+var instructor = {
+    firstName: 'Tim',
+    sayHi: function(){
+        console.log("Hello! " + this.firstName);
+    }
+}
+
+instructor.sayHi() // ?
+
+Solution 
+Output: Hello! Tim
+And why, becuase  the keyword this will refer to instructor when we invoke sayHi: which is the cal-site 
+
+What does this function output? Why?
+var instructor = {
+    firstName: 'Tim',
+    info: {
+        catOwner: true,
+        boatOwner: true
+    },
+    displayInfo: function(){
+        console.log("Cat owner? " + this.catOwner);
+    }
+}
+
+instructor.displayInfo() // ?
+Solution 
+Output  undefined because it doesn't associated parent object of the function instructor
+What does this function output? Why?
+var instructor = {
+    firstName: 'Tim',
+    info: {
+        catOwner: true,
+        boatOwner: true,
+        displayLocation: function(){
+            return this.data.location;
+        },
+        data: {
+            location: "Oakland"
+        }
+    },
+}
+
+instructor.info.displayLocation() // ?
+solution 
+Output oakland because it has  associated parent object of the function info 
+ 
+
+What does this function output? Why?
+
+
+
+var instructor = {
+    firstName: 'Tim',
+    info: {
+        catOwner: true,
+        boatOwner: true,
+        displayLocation: function(){
+            return this.location;
+        },
+        data: {
+            location: "Oakland",
+            logLocation: this.displayLocation
+        }
+    },
+}
+instructor.info.data.logLocation() // Why might we be getting an error here? 
+solution 
+Output typeError because instructor.info.data.logLocation is not a function
+
+
